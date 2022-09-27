@@ -1,0 +1,37 @@
+preprocessing:
+  train_path: C:/Users/farfr/PycharmProjects/credit-default-pred-mlops/data/raw/train.parquet
+  target_path: C:/Users/farfr/PycharmProjects/credit-default-pred-mlops/data/raw/train_labels.parquet
+  train_path_proc: C:/Users/farfr/PycharmProjects/credit-default-pred-mlops/data/processed/train.parquet
+  test_path_proc: C:/Users/farfr/PycharmProjects/credit-default-pred-mlops/data/processed/test.parquet
+  test_size: 0.25
+  target_column: 'target'
+  shuffle: True
+  random_state: 10
+  main_columns: [ 'P_2_last','D_39_max','D_39_last','B_1_last','B_2_last','R_1_mean','R_1_last','S_3_mean','S_3_last',
+                  'D_41_last','B_3_last','D_43_last','B_4_max','B_4_last','D_45_mean','B_5_last','D_46_last',
+                  'D_47_mean','B_7_last','D_51_mean','R_3_mean','D_52_min','P_3_max','B_14_last','S_11_mean',
+                  'D_62_min','D_65_max','B_18_min','S_12_mean','D_79_last','S_26_mean','R_27_max','D_118_min',
+                  'D_121_mean','D_41_diff','D_44_diff','B_4_diff','B_1_diff1','D_43_diff1','B_9_diff1']
+
+
+
+train:
+  n_trials: 3
+  n_folds: 5
+  random_state: 10
+  target_column: 'target'
+  model_path: C:/Users/farfr/PycharmProjects/credit-default-pred-mlops/models/model_cat.joblib
+  study_path: C:/Users/farfr/PycharmProjects/credit-default-pred-mlops/models/study.joblib
+  metrics_path: C:/Users/farfr/PycharmProjects/credit-default-pred-mlops/report/metrics.json
+  params_path: C:/Users/farfr/PycharmProjects/credit-default-pred-mlops/report/best_params.json
+
+evaluate:
+  predict_path: C:/Users/farfr/PycharmProjects/credit-default-pred-mlops/data/check/test.csv
+
+endpoints:
+  #train: 'http://fastapi:8000/train'
+  #prediction_input: 'http://fastapi:8000/predict_input'
+  #prediction_from_file: 'http://fastapi:8000/predict'
+  train: 'http://localhost:8000/train'
+  prediction_input: 'http://localhost:8000/predict_input'
+  prediction_from_file: 'http://localhost:8000/predict'
